@@ -3,7 +3,7 @@ using TMPro;
 
 public class VictoryManager : MonoBehaviour
 {
-    // Adding 'Instance' makes it easy for any script to find this specific manager
+   
     public static VictoryManager Instance;
 
     public TextMeshProUGUI victoryText;
@@ -12,7 +12,7 @@ public class VictoryManager : MonoBehaviour
 
     void Awake()
     {
-        // This ensures there is only ever ONE VictoryManager
+        
         Instance = this;
     }
 
@@ -38,10 +38,9 @@ public void ShowVictory()
 {
     if (victoryText != null)
     {
-        // This is the line that 'checks the box' for you
+        
         victoryText.gameObject.SetActive(true); 
         
-        // This ensures the letters actually render immediately
         victoryText.text = "You Are a Fearless Toad Warrior!";
         
         Debug.Log("Victory Box Checked and Text Set!");

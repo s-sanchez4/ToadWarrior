@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Essential for scene switching
+using UnityEngine.SceneManagement; 
 
 public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        // Replace "Level1" with the exact name of your Toad Warrior game scene
+        
         SceneManager.LoadScene("Toad_Land");
     }
 

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI; // Needed to talk to the NavMeshAgent
+using UnityEngine.AI; 
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            // Play the hit animation we set up earlier
+            
             GetComponentInChildren<Animator>().SetTrigger("GetHit");
         }
     }
@@ -29,8 +29,8 @@ void Die()
     if (isDead) return;
     isDead = true;
 
-    // --- THE FIX IS HERE ---
-    // 1. Tell the VictoryManager a boss has died
+    
+    
     VictoryManager vm = FindFirstObjectByType<VictoryManager>();
     if (vm != null)
     {
@@ -38,7 +38,7 @@ void Die()
     }
     // -----------------------
 
-    // 2. Animator Search
+   
     Animator anim = GetComponentInChildren<Animator>();
     if (anim != null) 
     {
@@ -46,7 +46,7 @@ void Die()
         anim.SetTrigger("Die");
     }
 
-    // 3. Agent Search
+  
     NavMeshAgent agent = GetComponentInChildren<NavMeshAgent>();
     if (agent == null) agent = GetComponentInParent<NavMeshAgent>();
 
@@ -56,7 +56,7 @@ void Die()
         agent.enabled = false;  
     }
  
-    // 4. Physics Fix
+   
     Rigidbody rb = GetComponent<Rigidbody>();
     if (rb != null)
     {
@@ -64,14 +64,14 @@ void Die()
         rb.useGravity = false; 
     }
 
-    // 5. Collider Fix
+    
     Collider col = GetComponent<Collider>();
     if (col != null) 
     {
         col.isTrigger = true; 
     }
 
-    // 6. Disable the AI script
+    
     if (GetComponent<BossAI>() != null) 
     {
         GetComponent<BossAI>().enabled = false;

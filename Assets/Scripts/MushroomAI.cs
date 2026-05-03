@@ -23,7 +23,7 @@ public class MushroomAI : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        // If the mushroom reached its spot or waited long enough, find a new spot
+        
         if (timer >= waitTime || !agent.pathPending && agent.remainingDistance < 0.5f)
         {
             Vector3 newPos = RandomNavMeshLocation(roamRadius);
@@ -32,7 +32,7 @@ public class MushroomAI : MonoBehaviour
         }
         if (anim != null && agent != null)
     {
-        // This tells the Animator how fast the mushroom is physically moving
+        
         float speed = agent.velocity.magnitude;
         anim.SetFloat("MoveSpeed", speed);
     }
@@ -54,8 +54,7 @@ public class MushroomAI : MonoBehaviour
         NavMeshHit hit;
         Vector3 finalPosition = Vector3.zero;
         
-        // Finds the closest valid point on the blue NavMesh
-        // Use NavMesh.SamplePosition to find a valid spot on the blue baked mesh
+        
 if (NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas)) 
 {
     finalPosition = hit.position;
@@ -64,12 +63,12 @@ if (NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas))
         return finalPosition;
     }
 
-    // This is called when the Toad "destroys" or walks into the mushroom
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Assuming your Player has a script to handle health
+            
             Health player = other.GetComponent<Health>();
             if (player != null)
             {

@@ -13,17 +13,16 @@ public partial class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Get movement input (WASD or Arrow Keys)
+        
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
 
         Speed = Mathf.Abs(vertical) + Mathf.Abs(horizontal);
         Speed = Mathf.Clamp01(Speed);
 
-        // Set Speed parameter for the blend tree
+       
         animator.SetFloat("Speed", Speed);
 
-        // Handle attack input
         if (Input.GetMouseButtonDown(0)) // Left click to attack
         {
             animator.SetTrigger("Attack");

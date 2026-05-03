@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI; // Needed to disable the Boss's navigation
+using UnityEngine.AI; 
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public Slider healthSlider; // Drag your ToadHealthBar here in the Inspector
    
    
-    private bool isDead = false; // Prevents the Die logic from running multiple times
+    private bool isDead = false; 
 
     private Animator anim;
     
@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
 
     currentHealth -= amount;
     
-    // 1. Update the UI first so the player sees the bar drop
+    
     if (healthSlider != null)
     {
         healthSlider.value = currentHealth;
@@ -34,16 +34,14 @@ public class Health : MonoBehaviour
 
     Debug.Log($"{gameObject.name} took {amount} damage. Health: {currentHealth}");
 
-    // 2. CHECK FOR DEATH
+    
     if (currentHealth <= 0)
     {
-        Die(); // This handles the "Die" trigger
+        Die(); 
     }
     else
     {
-        // 3. ONLY HURT IF ALIVE
-        // If we don't have this 'else', the Toad might play 
-        // the Hurt animation instead of the Die animation.
+        
         if (anim != null) anim.SetTrigger("Hurt");
     }
 }
@@ -59,7 +57,7 @@ public class Health : MonoBehaviour
     }
         Debug.Log("Health Healed: " + currentHealth);
     }
- // Inside your Health.cs script
+ 
 void Die()
 {
     if (isDead) return;
@@ -80,7 +78,7 @@ void Die()
         playerAnim.SetTrigger("Die");
     }
 
-    // Disable scripts and physics
+    
     PlayerController moveScript = GetComponent<PlayerController>();
     if (moveScript != null) moveScript.enabled = false;
 
